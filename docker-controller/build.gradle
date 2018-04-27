@@ -1,0 +1,20 @@
+group 'com.github.myDockerInterface'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'com.spotify:docker-client:8.11.2'
+    compile 'org.nanohttpd:nanohttpd:2.3.1'
+    runtime(
+            [group: 'org.nanohttpd', name: 'nanohttpd', version: '2.3.1'],
+    )
+
+}
