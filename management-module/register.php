@@ -27,7 +27,7 @@ if (file_exists($filename)) {
         echo 'USN already registered. <a href="./login.html">Click here to login</a>';
     } else {
 
-        mkdir("./user_files/" . $usn, 0777);
+        mkdir("./user_files/" . $usn, 0777, true);
         if (system("cp -a raw_IDE user_files/$usn/ 2>&1")) {
             echo "failed to register :(";
         } else {
@@ -44,7 +44,7 @@ if (file_exists($filename)) {
 } else {
     $user["usn"] = $usn;
     $user["pass"] = $pass;
-    mkdir("./user_files/" . $usn, 0777);
+    mkdir("./user_files/" . $usn, 0777, true);
     if (system("cp -a raw_IDE user_files/$usn/ 2>&1")) {
         echo "failed to register :(";
     } else {

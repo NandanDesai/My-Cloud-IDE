@@ -1,7 +1,9 @@
-group 'com.github.myDockerInterface'
-version '1.0-SNAPSHOT'
+plugins {
+    id 'java'
+}
 
-apply plugin: 'java'
+group 'io.github.nandandesai'
+version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
@@ -9,12 +11,30 @@ repositories {
     mavenCentral()
 }
 
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Docker Controller',
+                'Implementation-Version': version,
+                'Main-Class': 'io.github.nandandesai.dockcontrol.Server'
+    }
+    baseName = project.name + '-all'
+    from { (configurations.runtime).collect { it.isDirectory() ? it : zipTree(it) } } {
+        exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
+    }
+    with jar
+}
+
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
     compile 'com.spotify:docker-client:8.11.2'
+    // https://mvnrepository.com/artifact/javax.activation/activation
+    compile group: 'javax.activation', name: 'activation', version: '1.1.1'
+
     compile 'org.nanohttpd:nanohttpd:2.3.1'
     runtime(
             [group: 'org.nanohttpd', name: 'nanohttpd', version: '2.3.1'],
     )
-
 }

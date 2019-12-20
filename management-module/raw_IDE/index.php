@@ -27,7 +27,7 @@ if(isset($_SESSION['theme'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>KLETech Cloud Platform</title>
+    <title>My-Cloud-IDE</title>
     <?php
     // Load System CSS Files
     $stylesheets = array("jquery.toastmessage.css","reset.css","fonts.css","screen.css");
